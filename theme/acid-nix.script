@@ -877,7 +877,10 @@ fun relayout_apply() {
 
   # A passphrase prompt already on screen is placed from the same values.
   if (state.dialog_up) {
+    focus = ui.focus;             # build_dialog resets it to the entry
     build_dialog();
+    set_focus(focus);
+    lockout.shown = -1;           # redraw the countdown at the new position
     sync_slots(0);
     caps_update();
   }
